@@ -26,7 +26,7 @@
   \authors@strip@parens{#1}%
   \expandafter\g@addto@macro\expandafter\authors@final@list\expandafter{\authors@current}%
   \if\relax\detokenize{#2}\relax
-    \author{\authors@final@list}%
+    \author{\parbox{\linewidth}{\centering\authors@final@list}}%
     \expandafter\@gobble
   \else
     \expandafter\g@addto@macro\expandafter\authors@final@list\expandafter{\authors@sep}%
