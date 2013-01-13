@@ -1,0 +1,39 @@
+% Read authors from a specified file.
+%
+% This will read authors line by line from "filename", print them separated by
+% "separator" and fall back to "defaultvalue" if the file was not found. Stuff
+% inside parentheses will be stripped from the name. The separator is optional
+% and will fall back to ", ".
+%
+% Syntax: \authorsfromfile[separator]{filename}{defaultvalue}
+%
+% Source: http://tex.stackexchange.com/a/91573/13059
+
+\usepackage{catchfile}
+
+\makeatletter
+\newcommand{\authorsfromfile}[3][, ]{%
+  \IfFileExists{#2}
+    {\CatchFileDef\authors@list{#2}{\endlinechar=`^^J }\authors@do{#1}}
+    {\author{#3}}%
+}
+\def\authors@final@list{}
+\def\authors@do#1{%
+  \def\authors@sep{#1}%
+  \expandafter\authors@do@aux\authors@list\@nil
+}
+\def\authors@do@aux#1^^J#2\@nil{%
+  \authors@strip@parens{#1}%
+  \expandafter\g@addto@macro\expandafter\authors@final@list\expandafter{\authors@current}%
+  \if\relax\detokenize{#2}\relax
+    \author{\authors@final@list}%
+    \expandafter\@gobble
+  \else
+    \expandafter\g@addto@macro\expandafter\authors@final@list\expandafter{\authors@sep}%
+    \expandafter\@firstofone
+  \fi
+  {\authors@do@aux#2\@nil}%
+}
+\def\authors@strip@parens#1{\authors@strip@aux#1 (\@nil}
+\def\authors@strip@aux#1 (#2\@nil{\def\authors@current{\mbox{#1}}}
+\makeatother
