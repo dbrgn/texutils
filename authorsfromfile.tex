@@ -10,6 +10,7 @@
 % Source: http://tex.stackexchange.com/a/91573/13059
 
 \usepackage{catchfile}
+\usepackage{varwidth}
 
 \makeatletter
 \newcommand{\authorsfromfile}[3][, ]{%
@@ -26,7 +27,7 @@
   \authors@strip@parens{#1}%
   \expandafter\g@addto@macro\expandafter\authors@final@list\expandafter{\authors@current}%
   \if\relax\detokenize{#2}\relax
-    \author{\parbox{\linewidth}{\centering\authors@final@list}}%
+    \author{\begin{varwidth}{\linewidth}\centering\authors@final@list\end{varwidth}}%
     \expandafter\@gobble
   \else
     \expandafter\g@addto@macro\expandafter\authors@final@list\expandafter{\authors@sep}%
