@@ -1,0 +1,21 @@
+% Include creative commons graphics from eps files.
+%
+% For this to work as a submodule, you need to
+% specify \graphicspath. Example:
+%
+%		\graphicspath{{texutils/ccicons/}}
+%		\input{texutils/ccicons.tex}
+%
+% There is an optional argument that you can use to change the scaling of the
+% icon. Default is 0.33.
+%
+% The following commands are available: \ccLogo, \ccAttribution, \ccShareAlike,
+% \ccNoDerivatives, \ccNonCommercial, \ccNonCommercialEU, \ccZero
+
+\newcommand{\ccLogo}[1][0.33]{\includegraphics[scale=#1]{cc.eps}}
+\newcommand{\ccAttribution}[1][0.33]{\includegraphics[scale=#1]{by.eps}}
+\newcommand{\ccShareAlike}[1][0.33]{\includegraphics[scale=#1]{sa.eps}}
+\newcommand{\ccNoDerivatives}[1][0.33]{\includegraphics[scale=#1]{nd.eps}}
+\newcommand{\ccNonCommercial}[1][0.33]{\includegraphics[scale=#1]{nc.eps}}
+\newcommand{\ccNonCommercialEU}[1][0.33]{\includegraphics[scale=#1]{nc-eu.eps}}
+\newcommand{\ccZero}[1][0.33]{\includegraphics[scale=#1]{zero.eps}}
